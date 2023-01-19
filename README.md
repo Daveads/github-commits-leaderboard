@@ -1,3 +1,14 @@
 # Just some weird obsession
 
-* piece of the puzzle
+* a piece of the puzzle.
+
+
+<< TODO>>
+* run asynchronously
+* code refactoring
+* Then beat the board 
+
+
+NOTE :: The major idea of this is to get commited...
+
+Usernames :: This are mostly people i find interesting...
