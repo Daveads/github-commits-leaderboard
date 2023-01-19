@@ -58,6 +58,6 @@ commits = get_commit_per_user(data)
 Lead_data = leaderboard_sort(commits, data)
 
 
-print(" Username >> Name >> commits ")
-for i in Lead_data:
-    print(i)
+print(" Username  >>  Name  >>  commits ")
+for count, i in enumerate(Lead_data):
+    print(count, i)
