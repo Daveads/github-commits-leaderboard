@@ -1,0 +1,25 @@
+  Username  >>>  Name  >>>  contributions in 2023
+0 JakeWharton (Jake Wharton)  375
+1 wasabeef (Daichi Furiya)  288
+2 swankjesse (Jesse Wilson)  204
+3 alex (Alex Gaynor)  193
+4 jart (Justine Tunney)  183
+5 fasterthanlime (amos)  163
+6 maximecb (Maxime Chevalier-Boisvert)  138
+7 mikepenz (Mike Penz)  137
+8 evanw (Evan Wallace)  122
+9 jessfraz (Jess Frazelle)  113
+10 karpathy (Andrej)  109
+11 rexim (Alexey Kutepov)  99
+12 munificent (Bob Nystrom)  97
+13 torvalds (Linus Torvalds)  85
+14 ruby0x1 (.ruby)  83
+15 dennybritz (Denny Britz)  78
+16 chrisbanes (Chris Banes)  75
+17 unixpickle (Alex Nichol)  73
+18 Daveads (Adejumo David Adewale)  66
+19 eliben (Eli Bendersky)  66
+20 cnlohr (CNLohr)  55
+21 geohot (George Hotz)  54
+22 mattn (mattn)  51
+23 graydon (Graydon Hoare)  33
