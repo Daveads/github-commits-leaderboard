@@ -1,6 +1,5 @@
 JakeWharton
 wasabeef
-jart
 fasterthanlime
 jessfraz
 karpathy
