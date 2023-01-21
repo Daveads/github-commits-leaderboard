@@ -5,12 +5,13 @@ import aiofiles
 import aiohttp
 
 import time
+import cProfile
 
 from datetime import date, datetime
 
 
 start_date = date(datetime.now().year, 1,1)
-
+profiler = cProfile.Profile()
 
 async def userlist():
     async with aiofiles.open("challenger.txt", 'r') as f:
@@ -81,8 +82,10 @@ async def main():
 
     githubusername = await userlist()
 
+    
+    #profiler.enable()
     data_list = await user_data(githubusername.split())
-
+    #profiler.disable()
 
     commits = get_commit_per_user(data_list)
 
@@ -94,8 +97,16 @@ async def main():
     for count, i in enumerate(Lead_data):
         print(count, i)
 
-    # Execution time
+    # performance issues
     execution_time = end_time - start_time
     print(f"Execution time: {execution_time} seconds")
+    #profiler.print_stats()
 
 asyncio.run(main())
+
+
+# asyncio.gather()
+# requests-futures === concurrent.futures
+
+
+# leaderboard_sort() quicksort or merge sort 

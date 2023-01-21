@@ -6,6 +6,7 @@
 << TODO>>
 * run asynchronously
 * code refactoring
+* Optimization
 * Then beat the board 
 
 
