@@ -29,9 +29,13 @@ async def get_user_data(user):
 
 async def user_data(users):
     data = []
-    for user in users:
 
-        page =  await  get_user_data(user)                
+    coroutines = [get_user_data(user) for user in users]
+
+    pages = await asyncio.gather(*coroutines)
+
+    for page in pages:
+
         soup = BeautifulSoup(page, "html.parser")
 
         results = soup.find("h2", {"class": "f4 text-normal mb-2"}).text.strip().replace("\n","")
