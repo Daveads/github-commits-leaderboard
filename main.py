@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import asyncio
 from bs4 import BeautifulSoup
 import re
