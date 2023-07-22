@@ -26,3 +26,9 @@ andrewrk
 nayuki
 horenmar
 kubkon
+rui314
+higepon
+ggerganov
+carols10cents
+rakyll
+ruby0x1
