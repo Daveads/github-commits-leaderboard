@@ -2,3 +2,4 @@ env
 example
 faster.txt
 memory.py
+__pycache__/
