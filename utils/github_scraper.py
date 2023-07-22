@@ -1,10 +1,12 @@
 import asyncio
+import utils 
 from bs4 import BeautifulSoup
 import re
 from .github_endpoint import get_user_data
 
 class UserDataProcessingError(Exception):
     pass
+
 
 async def user_data(users):
     data = []
@@ -14,7 +16,7 @@ async def user_data(users):
     try:
         pages = await asyncio.gather(*coroutines)
     except Exception as e:
-        print(f"Error fetching user data: {e}")
+        utils.logger.error(f"Error fetching user data: {e}")
         return []  # Return an empty list to signify that data fetching failed
 
     for page in pages:
@@ -30,6 +32,7 @@ async def user_data(users):
 
             data.append(userBoard)
         except Exception as e:
+            utils.logger.exception("Error processing user data")
             raise UserDataProcessingError("Error processing user data")  # Raise the custom exception
 
     return data

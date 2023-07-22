@@ -1,5 +1,5 @@
 def leaderboard_sort(commits, data):
-    for i in range(len(commits)):
+    for _ in range(len(commits)):
         for j in range(len(commits) - 1):
             if commits[j] < commits[j + 1]:
                 commits[j], commits[j + 1] = commits[j + 1], commits[j]
