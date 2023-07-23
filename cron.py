@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# 59 22 * * * /usr/bin/python3 /path/to/your_script.py  << 11:59pm
+# */3 * * * * /usr/bin/python3 /path/to/your_script.py << 3min test
+
 import asyncio
 import os
 import datetime
