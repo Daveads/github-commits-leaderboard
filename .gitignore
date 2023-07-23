@@ -2,4 +2,6 @@ env
 example
 faster.txt
 memory.py
+.env
+error.log
 __pycache__/
