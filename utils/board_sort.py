@@ -1,4 +1,4 @@
-def leaderboard_sort(commits, data):
+async def leaderboard_sort(commits, data):
     for _ in range(len(commits)):
         for j in range(len(commits) - 1):
             if commits[j] < commits[j + 1]:

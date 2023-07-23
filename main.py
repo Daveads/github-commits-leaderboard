@@ -4,6 +4,7 @@ import time
 import cProfile
 from datetime import datetime
 import sys
+import re
 
 from utils.github_scraper import user_data, UserDataProcessingError
 from utils.board_sort import leaderboard_sort
@@ -32,14 +33,14 @@ async def main():
         print(f"Unexpected error occurred: {e}")
 
     commits = get_commit_per_user(data_list)
-    Lead_data = leaderboard_sort(commits, data_list)
+    Lead_data = await leaderboard_sort(commits, data_list)
     end_time = time.time()
 
-    sys.stdout.write(f"  Username  >>>  Name  >>>  contributions in {datetime.now().year}\n")
-    for count, i in enumerate(Lead_data):
-        sys.stdout.write(f"{count} {i}\n")
-
-    # performance issues
+    
+    from utils.generate_html import generate_html_table
+    sys.stdout.write(await generate_html_table(Lead_data))
+    
+    
     execution_time = end_time - start_time
     # sys.stdout.write(f"Execution time: {execution_time} seconds\n")
 
