@@ -3,6 +3,7 @@ import utils
 from bs4 import BeautifulSoup
 import re
 from .github_endpoint import get_user_data
+from .duplicate import remove_duplicates
 
 class UserDataProcessingError(Exception):
     pass
@@ -10,9 +11,9 @@ class UserDataProcessingError(Exception):
 
 async def user_data(users):
     data = []
+    coroutines = [get_user_data(user) for user in remove_duplicates(users)]
     
-    coroutines = [get_user_data(user) for user in users]
-
+    
     try:
         pages = await asyncio.gather(*coroutines)
     except Exception as e:

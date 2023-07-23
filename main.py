@@ -23,9 +23,9 @@ async def main():
     start_time = time.time()
 
     githubusername = await userlist()
-
     try:
         data_list = await user_data(githubusername.split())
+        
     except UserDataProcessingError as e:
         print(f"Error processing user data: {e}")
     except Exception as e:
