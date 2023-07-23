@@ -19,7 +19,6 @@ current_date_str = current_date.strftime("%d-%m-%Y")
 
 async def main():
     load_dotenv(".env")
-
     directory = os.getenv("directory")
 
     # Email values
