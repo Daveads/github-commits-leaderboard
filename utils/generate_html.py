@@ -10,9 +10,9 @@ async def generate_html_table(lead_data, current_commit=None):
     html_table += f"<thead><tr><th>Username</th><th>Name</th><th>Total_Commit {current_date_str}</th></tr></thead>"
     html_table += "<tbody>"
     
-    for row in lead_data:
+    for i, row in enumerate(lead_data, start=1):  # Add enumerate to get the index (start=1 to start numbering from 1)
         # Access individual elements of each list (username, name, and contributions)
-        username = row[0]
+        username = f"{i}.   {row[0]}"  # Add number to the username
         name = row[1]
         contributions = row[2]
 
