@@ -45,16 +45,12 @@ async def fetch_user_data(users, suser=None):
             first_word = formatted_results.split()[0]
             user_data = f"{fullName[:name_length]} {first_word}"
             user_data = parse_input_string(user_data)
-
+                        
             if suser and suser in user_data:
-                rows = soup.find_all('tr')
-                for row in rows:
-                    # Find all the cells (table data) in the current row
-                    cells = row.find_all('td', {'data-date': f'{current_date_str}'})
-                    if cells:
-                        # Extract the required data from the cell
-                        current_commit = cells[0].get('data-level')
-                        break
+                target_td = soup.find("td", {"data-date": f"{current_date_str}"})
+                if target_td:
+                    span = target_td.find("span", {"class": "sr-only"})
+                    current_commit = span.text.split()[0]
 
             data.append(user_data)
         except Exception as e:
