@@ -1,10 +1,9 @@
 import re
 import datetime
 
-async def generate_html_table(Lead_data):
+async def generate_html_table(Lead_data, current_commit = None):
     current_date = datetime.datetime.now()  # Get the current date and time
     current_date_str = current_date.strftime("%d-%m-%Y") 
-    NUM = 4
     # Generate html table
     html_table = "<table>"
     html_table += f"<thead><tr><th>Username</th><th>Name</th><th>Total_Commit {current_date_str}</th></tr></thead>"
@@ -18,7 +17,9 @@ async def generate_html_table(Lead_data):
         html_table += f"<tr><td>{username}</td><td>{name}</td><td>{contributions}</td></tr>"
     html_table += "</tbody></table>"
     
-    html_table +=f"<p>YOUR COMMITS FOR THE DAY : {NUM} </p>"
+    if current_commit:
+        html_table +=f"<p>YOUR COMMITS FOR THE DAY : {current_commit} </p>"
+        
     # HTML template
     html_template = """
     <html>

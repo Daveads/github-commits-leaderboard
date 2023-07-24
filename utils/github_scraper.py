@@ -3,6 +3,11 @@ from bs4 import BeautifulSoup
 import re
 from .github_endpoint import get_user_data
 from .duplicate import remove_duplicates
+import datetime
+
+current_date = datetime.datetime.now()  # Get the current date and time
+current_date_str = current_date.strftime("%Y-%m-%d")
+
 
 class UserDataProcessingError(Exception):
     pass
@@ -16,7 +21,9 @@ def parse_input_string(input_string):
         details = details[:first_open_bracket_index] + details[first_open_bracket_index + 1:first_close_bracket_index] + details[first_close_bracket_index + 1:]
     return [name, details, number] if number else [name, details]
 
-async def fetch_user_data(users):
+
+
+async def fetch_user_data(users, suser=None):
     data = []
     coroutines = [get_user_data(user) for user in remove_duplicates(users)]
 
@@ -29,15 +36,33 @@ async def fetch_user_data(users):
         try:
             soup = BeautifulSoup(page, "html.parser")
             results = soup.find("h2", {"class": "f4 text-normal mb-2"}).text.strip().replace("\n", "")
+
             fullName = soup.find("title").text
             name_length = len(fullName) - 8
             formatted_results = re.sub("\s+", " ", results)
             first_word = formatted_results.split()[0]
-            user_data = f"{fullName[:name_length]} {first_word}"
-
+            user_data = f"{fullName[:name_length]} {first_word}"            
             user_data = parse_input_string(user_data)
+            
+            if suser :
+                if suser in user_data:
+                    rows = soup.find_all('tr')
+                    for row in rows:
+                        # Find all the cells (table data) in the current row
+                        cells = row.find_all('td', {'data-date': f'{current_date_str}'})
+                        if cells:
+                            # Extract the required data from the cell
+                            current_commit = cells[0].get('data-level')
+                            #print(current_commit)
+                            break
+                                    
             data.append(user_data)
         except Exception as e:
             raise UserDataProcessingError("Error processing user data")
-
-    return data
+    
+    
+    if suser:
+        return data, current_commit
+    
+    else:
+        return data
