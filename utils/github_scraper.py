@@ -12,6 +12,7 @@ current_date_str = current_date.strftime("%Y-%m-%d")
 class UserDataProcessingError(Exception):
     pass
 
+
 def parse_input_string(input_string):
     name, *details, number = input_string.split()
     details = ' '.join(details)
@@ -20,7 +21,6 @@ def parse_input_string(input_string):
     if first_open_bracket_index != -1 and first_close_bracket_index != -1:
         details = details[:first_open_bracket_index] + details[first_open_bracket_index + 1:first_close_bracket_index] + details[first_close_bracket_index + 1:]
     return [name, details, number] if number else [name, details]
-
 
 
 async def fetch_user_data(users, suser=None):
@@ -32,6 +32,8 @@ async def fetch_user_data(users, suser=None):
     except Exception as e:
         raise UserDataProcessingError(f"Error fetching user data: {e}")
 
+    current_commit = None
+
     for page in pages:
         try:
             soup = BeautifulSoup(page, "html.parser")
@@ -41,28 +43,24 @@ async def fetch_user_data(users, suser=None):
             name_length = len(fullName) - 8
             formatted_results = re.sub("\s+", " ", results)
             first_word = formatted_results.split()[0]
-            user_data = f"{fullName[:name_length]} {first_word}"            
+            user_data = f"{fullName[:name_length]} {first_word}"
             user_data = parse_input_string(user_data)
-            
-            if suser :
-                if suser in user_data:
-                    rows = soup.find_all('tr')
-                    for row in rows:
-                        # Find all the cells (table data) in the current row
-                        cells = row.find_all('td', {'data-date': f'{current_date_str}'})
-                        if cells:
-                            # Extract the required data from the cell
-                            current_commit = cells[0].get('data-level')
-                            #print(current_commit)
-                            break
-                                    
+
+            if suser and suser in user_data:
+                rows = soup.find_all('tr')
+                for row in rows:
+                    # Find all the cells (table data) in the current row
+                    cells = row.find_all('td', {'data-date': f'{current_date_str}'})
+                    if cells:
+                        # Extract the required data from the cell
+                        current_commit = cells[0].get('data-level')
+                        break
+
             data.append(user_data)
         except Exception as e:
             raise UserDataProcessingError("Error processing user data")
-    
-    
+
     if suser:
         return data, current_commit
-    
     else:
         return data

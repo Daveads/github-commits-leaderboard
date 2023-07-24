@@ -1,24 +1,27 @@
 import re
 import datetime
 
-async def generate_html_table(Lead_data, current_commit = None):
+async def generate_html_table(lead_data, current_commit=None):
     current_date = datetime.datetime.now()  # Get the current date and time
     current_date_str = current_date.strftime("%d-%m-%Y") 
+    
     # Generate html table
     html_table = "<table>"
     html_table += f"<thead><tr><th>Username</th><th>Name</th><th>Total_Commit {current_date_str}</th></tr></thead>"
     html_table += "<tbody>"
-    for row in Lead_data:
+    
+    for row in lead_data:
         # Access individual elements of each list (username, name, and contributions)
         username = row[0]
         name = row[1]
         contributions = row[2]
 
         html_table += f"<tr><td>{username}</td><td>{name}</td><td>{contributions}</td></tr>"
+    
     html_table += "</tbody></table>"
     
     if current_commit:
-        html_table +=f"<p>YOUR COMMITS FOR THE DAY : {current_commit} </p>"
+        html_table += f"<p>YOUR COMMITS FOR THE DAY : {current_commit} </p>"
         
     # HTML template
     html_template = """
