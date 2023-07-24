@@ -7,7 +7,7 @@ async def generate_html_table(Lead_data):
     NUM = 4
     # Generate html table
     html_table = "<table>"
-    html_table += f"<thead><tr><th>Username</th><th>Name</th><th>Current_Commit {current_date_str}</th></tr></thead>"
+    html_table += f"<thead><tr><th>Username</th><th>Name</th><th>Total_Commit {current_date_str}</th></tr></thead>"
     html_table += "<tbody>"
     for row in Lead_data:
         # Access individual elements of each list (username, name, and contributions)
