@@ -1,5 +1,4 @@
 import asyncio
-import utils 
 from bs4 import BeautifulSoup
 import re
 from .github_endpoint import get_user_data
@@ -8,32 +7,37 @@ from .duplicate import remove_duplicates
 class UserDataProcessingError(Exception):
     pass
 
+def parse_input_string(input_string):
+    name, *details, number = input_string.split()
+    details = ' '.join(details)
+    first_open_bracket_index = details.find('(')
+    first_close_bracket_index = details.find(')')
+    if first_open_bracket_index != -1 and first_close_bracket_index != -1:
+        details = details[:first_open_bracket_index] + details[first_open_bracket_index + 1:first_close_bracket_index] + details[first_close_bracket_index + 1:]
+    return [name, details, number] if number else [name, details]
 
-async def user_data(users):
+async def fetch_user_data(users):
     data = []
     coroutines = [get_user_data(user) for user in remove_duplicates(users)]
-    
-    
+
     try:
         pages = await asyncio.gather(*coroutines)
     except Exception as e:
-        utils.logger.error(f"Error fetching user data: {e}")
-        return []  # Return an empty list to signify that data fetching failed
+        raise UserDataProcessingError(f"Error fetching user data: {e}")
 
     for page in pages:
         try:
             soup = BeautifulSoup(page, "html.parser")
             results = soup.find("h2", {"class": "f4 text-normal mb-2"}).text.strip().replace("\n", "")
             fullName = soup.find("title").text
-            namelgth = len(fullName) - 8
+            name_length = len(fullName) - 8
+            formatted_results = re.sub("\s+", " ", results)
+            first_word = formatted_results.split()[0]
+            user_data = f"{fullName[:name_length]} {first_word}"
 
-            strfmt = re.sub("\s+", " ", results)
-            c = strfmt.split()
-            userBoard = f"{fullName[:namelgth]} {c[0]}"
-
-            data.append(userBoard)
+            user_data = parse_input_string(user_data)
+            data.append(user_data)
         except Exception as e:
-            utils.logger.exception("Error processing user data")
-            raise UserDataProcessingError("Error processing user data")  # Raise the custom exception
+            raise UserDataProcessingError("Error processing user data")
 
     return data
