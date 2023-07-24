@@ -4,4 +4,5 @@ faster.txt
 memory.py
 .env
 error.log
+app.log
 __pycache__/
