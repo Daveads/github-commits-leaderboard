@@ -15,4 +15,4 @@ commit_message="board update test** $today"
 
 git commit -m "$commit_message"
 
-git push origin main
+git push -u origin main
