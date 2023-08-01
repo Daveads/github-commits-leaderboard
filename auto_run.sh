@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # crontab auto run this file
 # crontab command:
 # 59 22 * * 0  /path/to/your_script.sh //will be executed at 11:59 PM every Sunday. 
@@ -15,4 +15,4 @@ commit_message="board update test** $today"
 
 git commit -m "$commit_message"
 
-git push
+git push origin main 
