@@ -14,3 +14,5 @@ today=$(date +"%Y-%m-%d")
 commit_message="board update test** $today"
 
 git commit -m "$commit_message"
+
+git push origin main 

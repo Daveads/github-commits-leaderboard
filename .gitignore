@@ -6,3 +6,4 @@ memory.py
 error.log
 app.log
 __pycache__/
+.swp
