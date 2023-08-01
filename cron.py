@@ -26,7 +26,13 @@ async def main():
     PASSWORD = os.getenv('sender_password')
     RECEIVER_EMAIL = [f"{os.getenv('receiver_email')}"]
     
-    os.chdir(directory)
+    if directory is not None:
+        
+        os.chdir(directory)
+    
+    else:
+        logger.error("Error: Invalid directory path.")
+        return
 
     process = await asyncio.create_subprocess_shell(
         "python3 main.py",
