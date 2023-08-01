@@ -32,3 +32,11 @@ ggerganov
 carols10cents
 rakyll
 ruby0x1
+hawkw
+huitseeker
+hdevalence
+Manishearth
+repi
+keegancsmith
+wez
+sunshowers
