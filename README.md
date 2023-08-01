@@ -7,9 +7,9 @@
 * run asynchronously
 * code refactoring
 * Optimization
-* Then beat the board 
+* Then beat the board
 
 
-NOTE :: The major idea of this is to get commited...
+NOTE :: The main idea of this is to stay committed and keep building.
 
 Usernames :: This are mostly people i find interesting...
