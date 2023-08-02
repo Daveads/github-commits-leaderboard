@@ -1,7 +1,7 @@
 import json
 
 def usersd_list(inputd):
-    with open('specific_user_data.json', 'r') as file:
+    with open('specific_brainiacs_data.json', 'r') as file:
         data = file.read()
 
     users = json.loads(data)

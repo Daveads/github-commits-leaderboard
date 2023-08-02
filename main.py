@@ -5,7 +5,7 @@ import logging
 
 from utils.github_scraper import fetch_user_data, UserDataProcessingError
 from utils.board_sort import sort_data_by_commits
-from utils.github_users_list import userlist
+from utils.brainiacs_list import brainiacslist
 from utils.generate_html import generate_html_table
 
 # Set up the logger
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 async def main():
     start_time = time.time()
 
-    github_username = await userlist()
+    github_username = await brainiacslist()
 
 
     from utils.data_json import usersd_list

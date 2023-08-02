@@ -4,7 +4,7 @@ import os
 class UserListError(Exception):
     pass
 
-async def userlist():
+async def brainiacslist():
     root_path = os.path.dirname(os.path.abspath(__file__))  # Get the absolute path of the current file's directory
     file_path = os.path.join(root_path, f"../brainiacs.txt")  # Construct the correct relative path to challenger.txt
 

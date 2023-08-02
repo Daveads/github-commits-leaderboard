@@ -55,7 +55,10 @@ async def fetch_user_data(users, suser=None):
                     target_td = soup.find("td", {"data-date": f"{current_date_str}"})
                     if target_td:
                         span = target_td.find("span", {"class": "sr-only"})
-                        current_commit = span.text.split()[0] or 0
+                        current_commit = span.text.split()[0]
+
+                        if current_commit == "No":
+                            current_commit = 0
                         
                         from .daily_commit import add_user_commit
                         add_user_commit(user, current_commit, users_daily_commit)
