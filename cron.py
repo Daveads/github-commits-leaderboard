@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # 59 22 * * * /usr/bin/python3 /path/to/your_script.py  << 11:59pm
-# */3 * * * * /usr/bin/python3 /path/to/your_script.py << 3min test
 
 import asyncio
 import os
@@ -44,7 +43,11 @@ async def main():
     output = output.decode()
     
     # Send email with the output
-    await send_email(output, SENDER_EMAIL, PASSWORD, RECEIVER_EMAIL)
+
+    from utils.data_json import usersd_list
+
+    for i in usersd_list("email"):
+        await send_email(output, SENDER_EMAIL, PASSWORD, i)
     
     output_dir = os.getenv("output_dir")
 

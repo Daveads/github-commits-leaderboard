@@ -9,7 +9,7 @@ async def send_email(html_content, sender_email, sender_password, receiver_email
     
     msg['Subject'] = 'Current Commits for the Year'
     msg['From'] = sender_email
-    msg['To'] = ', '.join(receiver_email)
+    msg['To'] = receiver_email
 
     server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
     server.login(sender_email, sender_password)

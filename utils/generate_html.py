@@ -1,7 +1,6 @@
-import re
 import datetime
 
-async def generate_html_table(lead_data, current_commit=None):
+async def generate_html_table(lead_data, users_daily=None):
     current_date = datetime.datetime.now()  # Get the current date and time
     current_date_str = current_date.strftime("%d-%m-%Y") 
     
@@ -18,10 +17,15 @@ async def generate_html_table(lead_data, current_commit=None):
 
         html_table += f"<tr><td>{username}</td><td>{name}</td><td>{contributions}</td></tr>"
     
-    html_table += "</tbody></table>"
+    html_table += "</tbody></table><br><br>"
     
-    if current_commit:
-        html_table += f"<p>YOUR COMMITS FOR THE DAY : {current_commit} </p>"
+    html_table += "<strong>DAILY COMMITS</strong>"
+
+    if users_daily:
+        sorted_user_dict = dict(sorted(users_daily.items(), key=lambda item: int(item[1]), reverse=True))
+
+        for username, commits in sorted_user_dict.items():
+            html_table += f"<p><strong>{str(username).capitalize()}</strong> COMMITS FOR THE DAY : <strong>{commits}</strong> </p>"
         
     # HTML template
     html_template = """

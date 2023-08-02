@@ -25,6 +25,9 @@ def parse_input_string(input_string):
 
 async def fetch_user_data(users, suser=None):
     data = []
+
+    users_daily_commit ={}
+
     coroutines = [get_user_data(user) for user in remove_duplicates(users)]
 
     try:
@@ -45,18 +48,24 @@ async def fetch_user_data(users, suser=None):
             first_word = formatted_results.split()[0]
             user_data = f"{fullName[:name_length]} {first_word}"
             user_data = parse_input_string(user_data)
+
+            for user in suser:          
+                if user in user_data:
+
+                    target_td = soup.find("td", {"data-date": f"{current_date_str}"})
+                    if target_td:
+                        span = target_td.find("span", {"class": "sr-only"})
+                        current_commit = span.text.split()[0] or 0
                         
-            if suser and suser in user_data:
-                target_td = soup.find("td", {"data-date": f"{current_date_str}"})
-                if target_td:
-                    span = target_td.find("span", {"class": "sr-only"})
-                    current_commit = span.text.split()[0]
+                        from .daily_commit import add_user_commit
+                        add_user_commit(user, current_commit, users_daily_commit)
 
             data.append(user_data)
+
         except Exception as e:
             raise UserDataProcessingError("Error processing user data")
 
     if suser:
-        return data, current_commit
+        return data, users_daily_commit
     else:
         return data
