@@ -1,16 +1,6 @@
 [
-    {
-      "username": "daveads",
-      "email": "the.daveads@gmail.com"
-    }, 
-
-    {
-      "username" : "Retr0ville"
-    },
-
-    {
-      "username" :"repi"
-    }
-
-  ]
-  
+  {
+    "emails": ["this.dave@gmail.com"],
+    "users": ["geohot", "daveads", "rexim"]
+  }
+]

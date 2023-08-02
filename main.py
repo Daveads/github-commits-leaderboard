@@ -27,7 +27,7 @@ async def main():
 
     from utils.data_json import usersd_list
     SUSER = usersd_list("username") or None
-    
+     
     try:
         if SUSER:
             data_list, users_daily = await fetch_user_data(github_username.split(), SUSER)

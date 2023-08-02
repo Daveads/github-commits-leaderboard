@@ -7,10 +7,10 @@ def usersd_list(inputd):
     users = json.loads(data)
 
     if inputd == "username":
-        usernames = [user[f"{inputd}"] for user in users]
+        usernames =  users[0].get('users', [])
 
         return usernames
     
-    elif inputd == "email":
-        emails = [user[f"{inputd}"] for user in users]
+    elif inputd == "emails":
+        emails = users[0].get('emails', [])
         return emails
