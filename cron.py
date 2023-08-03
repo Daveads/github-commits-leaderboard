@@ -45,8 +45,8 @@ async def main():
     # Send email with the output
 
     from utils.data_json import usersd_list
-
-    for i in usersd_list("email"):
+    
+    for i in usersd_list("emails"):
         await send_email(output, SENDER_EMAIL, PASSWORD, i)
     
     output_dir = os.getenv("output_dir")
