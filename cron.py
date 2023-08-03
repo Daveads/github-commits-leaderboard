@@ -23,7 +23,6 @@ async def main():
     # Email values
     SENDER_EMAIL = os.getenv('sender_email')
     PASSWORD = os.getenv('sender_password')
-    RECEIVER_EMAIL = [f"{os.getenv('receiver_email')}"]
     
     if directory is not None:
         

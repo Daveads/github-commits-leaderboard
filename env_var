@@ -1,0 +1,6 @@
+directory = "<path to the raider>"  
+output_dir="<path to the output or generated html"
+
+sender_email="gmail"
+sender_password="application_password"
+
