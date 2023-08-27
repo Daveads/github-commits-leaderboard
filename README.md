@@ -18,7 +18,7 @@ Raider ranks specific users based on their GitHub commits for the current year a
 **NOTE:**
 For daily commits Email, add your username to list in the `brainiacs.txt` and `specific_brainiacs_data.json` files.
 
-
+![image](https://github.com/daveads/raider/blob/main/images/rader1.png)
 
 
 ## For local build or pushing to a server:
