@@ -16,7 +16,9 @@ Raider ranks specific users based on their GitHub commits for the current year a
    Add your email addresses.
 
 **NOTE:**
-For daily commits, ensure that your username is listed in both the `brainiacs.txt` and `specific_brainiacs_data.json` files.
+For daily commits Email, add your username to list in the `brainiacs.txt` and `specific_brainiacs_data.json` files.
+
+
 
 
 ## For local build or pushing to a server:
